@@ -17,6 +17,7 @@
 |[1068-产品销售分析I](./1068-产品销售分析I.md)|inner join|简单|
 |[1069-产品销售分析II](./1069-产品销售分析II.md)|group by|简单|
 |[1075-项目员工I](./1075-项目员工I.md)|inner join + group by + avg() + round()求每个项目员工的平均工作年龄|简单|
+|[1113-报告的记录](./1113.%E6%8A%A5%E5%91%8A%E7%9A%84%E8%AE%B0%E5%BD%95.md)|distinct + group by |简单|
 
 
 # 中等
@@ -28,4 +29,5 @@
 |[0613-直线上的最近距离](./0613-直线上的最近距离.md)|row_number()、min()、abs()求点表中两个点之间的最小距离|中等|
 |[1076-项目员工II](./1076-项目员工II.md)|group by + having + count() 求所有拥有最多员工的项目|中等|
 |[1082-销售分析I](./1082-销售分析I.md)|sum() + rank()求销售额并列第一的所有seller|中等|
-|[1083-销售分析II](./1083-销售分析II.md)|group by + having + count() + if() 求买了S8但没买IPhone的人|中等|
+|[1083-销售分析II](./1083-销售分析II.md)|with + group by + having + count() + if() 求买了S8但没买IPhone的人|中等|
+|[1083-销售分析III](./1084-%E9%94%80%E5%94%AE%E5%88%86%E6%9E%90III.md)|with + inner join 求仅在春季销售的商品|简单|
