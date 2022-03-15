@@ -49,3 +49,9 @@ group by + having + count() + if()
 - distinct x1, x2, x3... 保留的是x1、x2、x3...组成的唯一元组
 - 需要注意distinct (x1), x2, x3... 的效果和上面的是等价的
 
+## 12、 在日期[y-x, y]之间的数据
+```sql
+select activity_date as day, count(distinct(user_id)) as active_users from Activity 
+where datediff('2019-07-27', activity_date) < 30 
+group by activity_date
+```
