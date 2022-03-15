@@ -31,6 +31,7 @@
 |[1076-项目员工II](./1076-项目员工II.md)|group by + having + count() 求所有拥有最多员工的项目|中等|
 |[1082-销售分析I](./1082-销售分析I.md)|sum() + rank()求销售额并列第一的所有seller|中等|
 |[1083-销售分析II](./1083-销售分析II.md)|with + group by + having + count() + if() 求买了S8但没买IPhone的人|中等|
+|[0574-当选者](./0574.%E5%BD%93%E9%80%89%E8%80%85.md)|group by + count求最高分的人|中等|
 
 
 # 困难
