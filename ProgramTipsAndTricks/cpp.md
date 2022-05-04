@@ -60,3 +60,8 @@ sort(arr.begin(), arr.end(), [](const pair<int, char> & p1, const pair<int, char
 
 # 4. tuple
 ### 4.1 利用多维元组进行排序，避免重新定义类或结构体，并且利用其默认的比较大小顺序避免编写cmp
+
+
+# 5. 数值表示
+- `1e9`表示`10^9`，即10的9次方。
+- `10e9`表示的是10的10次方

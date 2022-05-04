@@ -14,6 +14,7 @@ for i:=0; i<m; i++{
 
 ## 3. 切片复制
 ```go
+destination := make([]T, len(source))  // 必须保证足够的容量
 copy(destination, source)
 ```
 
@@ -26,7 +27,7 @@ for i:=0; i<m; i++ {
 
 ## 5. 闭包函数中递归使用该函数
 ```go
-var dfs func(g [][]int, i, j, t int)
+var dfs func([][]int, int, int, int)
 dfs := func(g [][]int, i, j, t int) {
     ....
     dfs(g, i, j, t)
@@ -214,7 +215,7 @@ ps: 没有泛型写个堆都这么麻烦。。。刚出的泛型不知道还要�
 # 13. 二分查找
 
 ```go
-idx := sort.Search(len(arr), func(i int)bool{return arr[i]<key})
+idx := sort.Search(len(arr), func(i int)bool{return arr[i]>key})
 ```
 
 返回使得`f(i)`为`true`的第一个i。但需要注意，我们要实现的是`大于号`或者`大于等于号`。看下面例子：
