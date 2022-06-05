@@ -65,3 +65,16 @@ sort(arr.begin(), arr.end(), [](const pair<int, char> & p1, const pair<int, char
 # 5. 数值表示
 - `1e9`表示`10^9`，即10的9次方。
 - `10e9`表示的是10的10次方
+
+# 6. list
+- `insert(i, x)` 在迭代器`i`之前插入`x`
+- `j = erase(i)` 删除迭代器i指向的元素，并返回下一个元素
+- 循环删除时，如果删除到begin()需要特别处理，因为通常写为`it!=lst.begin()`为循环条件。假设我们要删除闭区间 `[begin(), start]` 内的所有元素：
+    ```cpp
+    for(auto i=next(start); i!=lst.begin(); ) {
+        i = prev(i);
+        i = lst.erase(i);
+    }
+    ```
+- 更一般的来说，从待删除元素的后一个元素开始迭代，删除其前一个元素后，会返回正确的后一个元素。后面永远会有一个元素。
+- 同样的，我们维护迭代器 `i` 时，使其永远指向正确插入位置的下一个位置。
