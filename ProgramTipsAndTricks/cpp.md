@@ -79,3 +79,22 @@ sort(arr.begin(), arr.end(), [](const pair<int, char> & p1, const pair<int, char
 - 我们维护迭代器 `i` 时，使其永远指向正确插入位置的下一个位置。
 - `prev()` 获取上一个迭代器
 - `next()` 获取下一个迭代器
+
+# 7. accumulate() 求和
+```cpp
+int initVal = 0;
+auto sum = accumulate(v.begin(), v.end(), iniVal);
+```
+
+# 8. max_element() 求容器中的最小元素
+```cpp
+int val = *max_element(v.begin(), v.end());
+```
+
+# 9. for_each() 
+```cpp
+for_each(v.begin(), v.end(), [](int x) {
+    cout<<x<<" ";
+});
+cout<<endl;
+```
