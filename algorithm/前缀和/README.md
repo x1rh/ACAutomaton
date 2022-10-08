@@ -1,0 +1,6 @@
+- 定义原数组`a[i]`, 0-indexed
+- 定义前缀和数组`pre[i]`, 0-indexed
+    - 范围是0到n，共n+1个数。 
+    - `pre[i] = sum(a[0], ..., a[i-1])`
+    - `pre[0]=0`
+    - `pre[r]-pre[l] = sum(a[l], ..., a[r-1])`

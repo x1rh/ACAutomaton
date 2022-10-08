@@ -7,7 +7,7 @@
 
 
 # 2. function
-### 2.1 利用function实现dfs，避免过多参数重新声明
+### 2.1 利用function实现dfs，避免过多参数重新声明（只是为了方便）
 ```cpp
 function<void(int, vector<int>, int)> dfs = [&](int si, vector<int> left, int cnt){
     if(si >= special.size()){
@@ -98,3 +98,7 @@ for_each(v.begin(), v.end(), [](int x) {
 });
 cout<<endl;
 ```
+
+# 10. string 转 整型
+- stol()
+- stoi() 

@@ -1,0 +1,2 @@
+- [cpp](./prim.cpp)
+- [go](./prim.go)

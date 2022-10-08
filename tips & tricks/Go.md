@@ -97,13 +97,28 @@ for i:=0; i<n; i++{
 
 
 ## 10. 数字和字符串相互转换
-- 数字转字符串：`strconv.Itoa()`，无需错误处理
-- 字符串转数字：`strconv.Atoi()`, 需要错误处理
+- int to string：`strconv.Itoa()`，无需错误处理
+- string to int：`strconv.Atoi()`, 需要错误处理
+- int64 to string: `strconv.FormatInt(i int64, base int) string` 
+- uint64 to string: `FormatUint(i uint64, base int) string`
+- float64 to string:  `strconv.FormatFloat(f float64, fmt byte, prec, bitSize int) string`
 
-## 11. 去除前后空格
+## 11. strings module 
+去除前后空格
 - `strings.Trim(s, " ")`
 - `strings.TrimLeft(s, " ")`
 - `strings.TrimRight(s, " ")`
+
+n个重复的字符串
+- `strings.Repeat(" ", 10)`
+
+builder
+- `b := strings.Builder{}`
+- `b.WriteString()`
+- `b.WriteByte()`
+- `b.WriteRune()`
+- `b.Reset()`
+- `b.String()`
 
 ## 12. 堆
 
@@ -263,5 +278,53 @@ func unique(A []int) []int {
 ```
 
 
+# 15. list
+```go
+lst := list.New()
+lst.PushBack(1)
+lst.PushBack(2)
+for i := lst.Front(); i != nil ; i=i.Next() {
+    fmt.Println(i.Value.(int))
+}
+```
 
+# 16. TreeMap
+官方库没有treemap，但是leetcode上有
+```golang
+type MyCalendarTwo struct {
+    *redblacktree.Tree
+}
 
+func Constructor() MyCalendarTwo {
+    return MyCalendarTwo{redblacktree.NewWithIntComparator()}
+}
+
+func (c MyCalendarTwo) add(key, value int) {
+    if v, ok := c.Get(key); ok {
+        c.Put(key, v.(int)+value)
+    } else {
+        c.Put(key, value)
+    }
+}
+
+func (c MyCalendarTwo) Book(start, end int) bool {
+    c.add(start, 1)
+    c.add(end, -1)
+    maxBook := 0
+    it := c.Iterator()
+    for it.Next() {
+        maxBook += it.Value().(int)
+        if maxBook > 2 {
+            c.add(start, -1)
+            c.add(end, 1)
+            return false
+        }
+    }
+    return true
+}
+
+作者：LeetCode-Solution
+链接：https://leetcode.cn/problems/my-calendar-ii/solution/wo-de-ri-cheng-an-pai-biao-ii-by-leetcod-wo6n/
+来源：力扣（LeetCode）
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+```

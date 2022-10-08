@@ -1,5 +1,3 @@
-# Python
-```python
 class Node:
     def __init__(self, value=None):
         self.value = value
@@ -71,10 +69,3 @@ if __name__ == '__main__':
     content = list()
     trie.dfs(trie.root, content)
     print('all content in trie tree:', content)
-```
-
-
-# Go
-
-
-# Cpp
