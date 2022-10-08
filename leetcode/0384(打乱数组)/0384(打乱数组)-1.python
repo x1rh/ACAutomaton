@@ -1,0 +1,19 @@
+class Solution:
+
+    def __init__(self, nums: List[int]):
+        self.L = nums
+        self.backup = list(nums)
+
+    def reset(self) -> List[int]:
+        """
+        Resets the array to its original configuration and return it.
+        """
+        return self.backup
+
+
+    def shuffle(self) -> List[int]:
+        """
+        Returns a random shuffling of the array.
+        """
+        random.shuffle(self.L)
+        return self.L

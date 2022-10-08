@@ -1,0 +1,11 @@
+class Solution:
+    def findOcurrences(self, text: str, first: str, second: str) -> List[str]:
+        ans = list()
+        spl = text.split()
+        for i, x in enumerate(spl):
+            if i <= len(spl) - 3:
+                if spl[i] == first and spl[i+1] == second:
+                    ans.append(spl[i+2])
+
+
+        return ans  

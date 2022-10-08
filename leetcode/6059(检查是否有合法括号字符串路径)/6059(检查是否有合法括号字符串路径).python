@@ -1,0 +1,36 @@
+class Solution:
+    def hasValidPath(self, grid: List[List[str]]) -> bool:
+        m = len(grid)
+        n = len(grid[0])
+    
+ 
+        global flag 
+        flag = False 
+        @lru_cache(None)
+        def dfs(i, j, c):
+            global flag 
+            if grid[i][j]  == '(':
+                c += 1 
+            else:
+                c -= 1 
+
+            if c < 0:
+                return 
+
+            if i==m-1 and j==n-1:
+                if c == 0:
+                    flag = True
+
+            if flag:
+                return 
+
+
+            if i+1 < m:
+                dfs(i+1, j, c)
+
+            if j+1 <n:
+                dfs(i, j+1, c)
+
+
+        dfs(0, 0, 0)
+        return flag 

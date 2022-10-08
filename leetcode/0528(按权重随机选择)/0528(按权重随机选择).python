@@ -1,0 +1,10 @@
+class Solution:
+
+    def __init__(self, w: List[int]):
+        self.pre = list(accumulate(w))
+        self.tot = sum(w)
+
+
+    def pickIndex(self) -> int:
+        x = random.randint(1, self.tot)
+        return bisect_left(self.pre, x)

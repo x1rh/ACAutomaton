@@ -1,0 +1,24 @@
+from threading import Lock
+
+class Foo(object):
+    def __init__(self):
+        self.one = Lock()
+        self.two = Lock()
+        self.one.acquire()
+        self.two.acquire()
+
+
+    def first(self, printFirst):
+        printFirst()
+        self.one.release()
+
+
+    def second(self, printSecond):
+        with self.one:
+            printSecond()
+            self.two.release()
+            
+            
+    def third(self, printThird):
+        with self.two:
+            printThird()

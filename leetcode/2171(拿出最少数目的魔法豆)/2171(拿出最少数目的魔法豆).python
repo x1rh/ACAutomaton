@@ -1,0 +1,14 @@
+class Solution:
+    def minimumRemoval(self, beans: List[int]) -> int:
+        li = sorted(beans)
+        pre = [0]
+        i = 1
+        for i in range(1, len(li)+1):
+            pre.append(pre[-1]+li[i-1])
+        
+        minv = 1000000000000
+        for i in range(0, len(li)):
+            now = pre[-1] - pre[i+1]  - li[i] * (len(li)-1-i) + pre[i]
+            minv = min(now, minv)
+        
+        return minv

@@ -1,0 +1,33 @@
+class TextEditor:
+
+    def __init__(self):
+        self.s = ""
+        self.idx = 0 
+
+
+    def addText(self, text: str) -> None:
+        this = self
+        this.s = this.s[:this.idx] + text + this.s[this.idx:]
+        this.idx += len(text)
+
+
+    def deleteText(self, k: int) -> int:
+        this = self 
+        d = min(this.idx, k)
+        this.s = this.s[:this.idx-d] + this.s[this.idx:] 
+        this.idx -= d 
+        return d 
+
+
+    def cursorLeft(self, k: int) -> str:
+        this = self
+        this.idx = max(this.idx-k, 0)
+        d = min(this.idx, 10)
+        return this.s[this.idx-d:this.idx]
+
+
+    def cursorRight(self, k: int) -> str:
+        this = self
+        this.idx = min(this.idx+k, len(this.s))
+        d = min(this.idx, 10)
+        return this.s[this.idx-d:this.idx]
