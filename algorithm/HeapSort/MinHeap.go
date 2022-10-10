@@ -12,32 +12,32 @@ func build(a []int) {
 }
 
 func down(a []int, i int) bool {
-	var k int
-	j := i
+	p := i      // parent
+	s := 0      // son
 	n := len(a)
 	if n == 0 {
 		return false
 	}
 	for {
-		l := 2 * j + 1
-		r := 2 * j + 2
-		k = l
+		l := 2 * p + 1            // left  son
+		r := 2 * p + 2            // right son
+		s = l
 		if l >= n || l < 0 {      // l < 0 after int overflow
 			break
 		}
 		if r < n && a[r] < a[l] {
-			k = r
+			s = r
 		}
 
-		if a[k] >= a[j] {
+		if a[s] >= a[p] {
 			break
 		}
 
-		a[k], a[j] = a[j], a[k]
-		j = k
+		a[p], a[s] = a[s], a[p]
+		p = s
 	}
 
-	return j > i
+	return p > i
 }
 
 func up(a []int, j int) {
@@ -69,7 +69,6 @@ func main() {
 	a := []int{1, 2, 3, 8, 7, 6, 5, 4, 9, 10, 12, 11}
 
 	build(a)
-	
 	for len(a) > 0 {
 		x := pop(&a)
 		fmt.Println(x)
