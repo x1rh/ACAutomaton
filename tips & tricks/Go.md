@@ -103,22 +103,28 @@ for i:=0; i<n; i++{
 - uint64 to string: `FormatUint(i uint64, base int) string`
 - float64 to string:  `strconv.FormatFloat(f float64, fmt byte, prec, bitSize int) string`
 
-## 11. strings module 
-去除前后空格
+## 11. 字符串相关 
+### 11.1 去除前后空格
 - `strings.Trim(s, " ")`
 - `strings.TrimLeft(s, " ")`
 - `strings.TrimRight(s, " ")`
 
-n个重复的字符串
+### 11.2 n个重复的字符串
 - `strings.Repeat(" ", 10)`
 
-builder
+### 11.3 builder
 - `b := strings.Builder{}`
+- `var b strings.Builder` 推荐 
 - `b.WriteString()`
 - `b.WriteByte()`
 - `b.WriteRune()`
 - `b.Reset()`
 - `b.String()`
+
+### 11.4 字符判断
+- `unicode.IsLetter()`
+- `unicode.IsNumber()`
+- `unicode.IsLower()`
 
 ## 12. 堆
 
