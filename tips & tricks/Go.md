@@ -36,7 +36,7 @@ dfs := func(g [][]int, i, j, t int) {
 
 ## 6. 结构体数组排序
 ```go
-arr := []struct{x byte; cnt int}{{'a', a}, {'b', b}, {'c', c}}
+arr := []struct{x byte; cnt int}{{'a', a}, {'b', b}, {'c', c}}              // 注意分号 
 sort.Slice(arr, func(i, j int) bool {return arr[i].cnt > arr[j].cnt})
 ```
 
@@ -62,6 +62,9 @@ func main(){
         fmt.Scanln(&s)
         fmt.Println(T, s)
     }
+
+    // 读取单个byte或rune 为 "%c"
+    
 }
 ```
 
@@ -96,18 +99,26 @@ for i:=0; i<n; i++{
 - 判断rune是否小写：`unicode.IsLower()`
 
 
-## 10. 数字和字符串相互转换
+## 10. 数学
+### 10.1 数字和字符串相互转换
 - int to string：`strconv.Itoa()`，无需错误处理
 - string to int：`strconv.Atoi()`, 需要错误处理
 - int64 to string: `strconv.FormatInt(i int64, base int) string` 
 - uint64 to string: `FormatUint(i uint64, base int) string`
 - float64 to string:  `strconv.FormatFloat(f float64, fmt byte, prec, bitSize int) string`
 
+### 10.2 浮点数运算
+- 上取整
+- 下取整
+
 ## 11. 字符串相关 
 ### 11.1 去除前后空格
 - `strings.Trim(s, " ")`
 - `strings.TrimLeft(s, " ")`
 - `strings.TrimRight(s, " ")`
+### 构造字符串
+- `strings.Repeat()`
+
 
 ### 11.2 n个重复的字符串
 - `strings.Repeat(" ", 10)`
