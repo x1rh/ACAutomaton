@@ -1,10 +1,12 @@
+package dijkstra
+
 const INF = 0x3f3f3f3f
 
 type node struct {
 	y, c int
 }
 
-// dijkstra 计算单源最短路，起点是start，节点标号从至n-1 
+// dijkstra 计算单源最短路，起点是start，节点标号从0至n-1 
 func dijkstra(g map[int][]node, start, n int) []int {
 	d := make([]int, n)
 	vis := make([]bool, n)
