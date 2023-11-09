@@ -11,6 +11,7 @@ func Init(s *UnionFindSet, n int) {
     }
 }
 
+// 路径压缩，将返回值置为查询值x的父亲
 func (s *UnionFindSet) find(x int) int {
     if s.fa[x] == x {
         return x 
@@ -20,6 +21,9 @@ func (s *UnionFindSet) find(x int) int {
     }
 }
 
+// 按秩压缩，将秩小的合并到大的上面
+// 已经联通，返回false
+// 可以联通，返回true
 func (s *UnionFindSet) union(x, y int) bool {
     px := s.find(x)
     py := s.find(y)

@@ -7,4 +7,5 @@
     - 一条边的两个点如果在一个集合，那说明加入这条边会产生环
 
 
-
+# 题目
+- [684. 冗余连接](https://leetcode.cn/problems/redundant-connection/) 
