@@ -6,6 +6,9 @@
     - `pre[0]=0`
     - `pre[r]-pre[l] = sum(a[l], ..., a[r-1])`
 
+# 二维前缀 
+[leetcode 304. 二维区域和检索 - 矩阵不可变](https://leetcode.cn/problems/range-sum-query-2d-immutable/description/) 
+
 # 后缀 
 
 # 一维差分

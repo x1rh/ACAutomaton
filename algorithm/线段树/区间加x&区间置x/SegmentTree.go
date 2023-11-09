@@ -6,6 +6,7 @@ const (
 
 // int通常是8 Byte，如果添加一个布尔类型的标记，那么内存对齐后，每个结构体将浪费7 Byte
 // 在某些恶心的题目里为了节约内存，让addv和setv这样的标记字段包含两种语义，一是值，二是标记。这要求能区分出值与标记。
+// 此外, go中int是64bit的
 type Node struct {
 	sumv int
 	addv int
@@ -14,9 +15,10 @@ type Node struct {
 }
 
 type SegmentTree struct {
-	tree []Node
+	tree []Node // slice自动扩容存在开销
 }
 
+// 0号节点是根节点，即tree[0]
 func NewSegmentTree() *SegmentTree {
 	st := &SegmentTree{}
 	st.tree = append(st.tree, NewNode())
@@ -33,6 +35,7 @@ func NewNode() Node {
 	}
 }
 
+// pushUp 要求l和r一定存在，不检查l和r是否存在，因为pushUp配合pushDown使用
 func (st *SegmentTree) pushUp(p int) {
 	l := st.tree[p].l
 	r := st.tree[p].r
@@ -40,17 +43,18 @@ func (st *SegmentTree) pushUp(p int) {
 }
 
 func (st *SegmentTree) pushDown(p, Len int) {
-	var l, r int
 	if st.tree[p].l == 0 { // 利用初始值0判断节点p还没有分配子节点
-		l = len(st.tree)
-		st.tree[p].l = l
+		st.tree[p].l = len(st.tree)
 		st.tree = append(st.tree, NewNode())
 	}
 	if st.tree[p].r == 0 {
-		r = len(st.tree)
-		st.tree[p].r = r
+		st.tree[p].r = len(st.tree)
 		st.tree = append(st.tree, NewNode())
 	}
+
+	l := st.tree[p].l
+	r := st.tree[p].r
+
 	if st.tree[p].setv != EMPTY {
 		st.tree[l].setv = st.tree[p].setv
 		st.tree[r].setv = st.tree[p].setv
@@ -61,8 +65,18 @@ func (st *SegmentTree) pushDown(p, Len int) {
 		st.tree[p].setv = EMPTY
 	}
 	if st.tree[p].addv != EMPTY {
-		st.tree[l].addv += st.tree[p].addv
-		st.tree[r].addv += st.tree[p].addv
+		if st.tree[l].addv != EMPTY {
+			st.tree[l].addv += st.tree[p].addv
+		} else {
+			st.tree[l].addv = st.tree[p].addv
+		}
+
+		if st.tree[r].addv != EMPTY {
+			st.tree[r].addv += st.tree[p].addv
+		} else {
+			st.tree[r].addv = st.tree[p].addv
+		}
+
 		st.tree[l].sumv += st.tree[p].addv * (Len - Len/2)
 		st.tree[r].sumv += st.tree[p].addv * (Len / 2)
 		st.tree[p].addv = EMPTY
@@ -72,7 +86,11 @@ func (st *SegmentTree) pushDown(p, Len int) {
 func (st *SegmentTree) Add(p, l, r, a, b, v int) {
 	if a <= l && r <= b {
 		st.tree[p].sumv += v * (r - l + 1)
-		st.tree[p].addv += v
+		if st.tree[p].addv != EMPTY {
+			st.tree[p].addv += v
+		} else {
+			st.tree[p].addv = v
+		}
 	} else {
 		st.pushDown(p, r-l+1)
 		m := (l + r) / 2

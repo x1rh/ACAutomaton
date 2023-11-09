@@ -28,6 +28,8 @@ bool isDigit(char ch){
     return '0'<=ch && ch<='9';
 }
 
+
+// prepare 处理负数的负号
 void prepare(string &expr){
     for(int i=0; i<=expr.size(); ++i){
         if(expr[i] == '-'){
@@ -49,11 +51,9 @@ int cal(string &expr){
     for(int i=0; i<expr.size(); ++i){
         if(isDigit(expr[i])){
             number = number * 10 + expr[i] - '0';
-        }
-        else if(expr[i]=='(' || expr[i]=='[' || expr[i]=='{'){
+        } else if(expr[i]=='(' || expr[i]=='[' || expr[i]=='{'){
             operators.push(expr[i]);
-        }
-        else if(expr[i]==')' || expr[i]==']' || expr[i]=='}'){
+        } else if(expr[i]==')' || expr[i]==']' || expr[i]=='}'){
             char target = ' ';
             if(expr[i] == ')'){
                 target = '(';
@@ -65,21 +65,26 @@ int cal(string &expr){
                 target = '{';
             }
 
+            // 右括号，i必定大于等于1；判断有数，则将数输出到suffix向量中
             if(isDigit(expr[i-1])){
                 suffix.emplace_back(Node{0, number});
                 number = 0;
             }
+
+            // 将括号中的操作符全部输出到suffix向量中
             while(!operators.empty() && operators.top()!=target){
                 suffix.emplace_back(Node{operators.top(), 0});
                 operators.pop();
             }
             operators.pop();
-        }
-        else{
-            if(isDigit(expr[i-1])){
+        } else{
+            // 遇到操作符，如果左边是操作数，将操作数输出到suffix向量中
+            if(i>0 && isDigit(expr[i-1])){
                 suffix.emplace_back(Node{0, number});
                 number = 0;
             }
+
+            // 将优先级高的操作符出栈，输出到suffix中
             while(!operators.empty() && priority[expr[i]]<=priority[operators.top()]){
                 suffix.emplace_back(Node{operators.top(), 0});
                 operators.pop();
@@ -87,6 +92,8 @@ int cal(string &expr){
             operators.push(expr[i]);
         }
     }
+
+    // 如果末尾是数字，那么把num输出到suffix向量
     if(isDigit(expr.back())){
         suffix.emplace_back(Node{0, number});
     }
@@ -112,13 +119,13 @@ int cal(string &expr){
                         res = operand1 + operand2;
                         break;
                     case '-':
-                        res = operand2 - operand1;
+                        res = operand2 - operand1;   // 注意减数和被减数 
                         break;
                     case '*':
                         res = operand1 * operand2;
                         break;
                     case '/':
-                        res = operand2 / operand1;
+                        res = operand2 / operand1;   // 注意除数和被除数
                         break;
                 }
                 operands.push(res);

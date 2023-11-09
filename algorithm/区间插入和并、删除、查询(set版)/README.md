@@ -40,5 +40,11 @@ public:
 2. 设元组(l, r)为最终插入值，那么不断更新这两个值即可。
 3. 退出条件：类似于1， 找到第一个`(j_l, j_r)`, 使得`j_l-1>right`， 即`right+1<j_l`时退出，例如`[1,2], [4, 5]`
 
-## 参考leetcode-715 range模块
-提供了区间的插入合并、区间删除、区间查询：[leetcode-715题解](../leetcode/0715(Range模块).md)
+## 题目
+- [lc56. 合并区间](https://leetcode.cn/problems/merge-intervals/)
+    - 简单的区间合并（无顺序要求）
+- [lc6066](https://leetcode.cn/problems/count-integers-in-intervals/)
+- [lc715 range模块]()
+    - 提供了区间的插入合并、区间删除、区间查询：[leetcode-715题解](../leetcode/0715(Range模块).md)
+
+
