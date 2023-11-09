@@ -1,3 +1,5 @@
+package prim 
+
 type pair struct {
     to, d int 
 }
